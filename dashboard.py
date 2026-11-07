@@ -9,6 +9,7 @@ df = pd.read_excel(
 )
 
 st.title("Consulta Rápida de Antimicrobianos")
+st.title("HNGAI")
 
 # Antimicrobiano
 antimicrobiano = st.selectbox(
@@ -45,9 +46,11 @@ if not resultado.empty:
         )
 
     with col2:
+        fecha = pd.to_datetime(fila["Fecha Vencimiento"])
+
         st.metric(
             "Vencimiento",
-            str(fila["Fecha Vencimiento"])
+            fecha.strftime("%d/%m/%Y")
         )
 
         st.metric(
@@ -77,4 +80,3 @@ if not resultado.empty:
     st.info(
         str(fila["Observaciones de Ficha Técnica del Fabricante"])
     )
-    
